@@ -16,7 +16,7 @@ def index():
 @app.route('/api')
 def get_api():
     
-    return get_data()
+    return "the link to api is now deprecated. Will return the api in the future if required."
 
 if __name__ == '__main__':
     app.run(debug=True)
