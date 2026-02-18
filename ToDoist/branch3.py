@@ -23,14 +23,24 @@ def submit():
         item_name = request.form.get('itemName')
         item_description = request.form.get('itemDescription')
         item_id = request.form.get('itemId')
+<<<<<<< HEAD
         item_uuid = request.form.get('itemUuid')        
         item_hash = request.form.get('itemHash')
+=======
+        item_uuid = request.form.get('itemUUID')
+        item_hash = request.form.get('itemHash')
+        
+>>>>>>> 365119a2108acc78f32b0fdb22fdc5127d777e3c
     
         collection.insert_one({
             "itemName": item_name,
             "itemDescription": item_description,
             "itemId": item_id,
+<<<<<<< HEAD
             "itemUuid": item_uuid,
+=======
+            "itemUUID": item_uuid,
+>>>>>>> 365119a2108acc78f32b0fdb22fdc5127d777e3c
             "itemHash": item_hash
         })
         
