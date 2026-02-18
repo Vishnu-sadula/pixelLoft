@@ -22,12 +22,14 @@ def submit():
     try:
         item_name = request.form.get('itemName')
         item_description = request.form.get('itemDescription')
-        item_id = request.form.get('itemId')        
+        item_id = request.form.get('itemId')
+        item_uuid = request.form.get('itemUuid')        
     
         collection.insert_one({
             "itemName": item_name,
             "itemDescription": item_description,
-            "itemId": item_id
+            "itemId": item_id,
+            "itemUuid": item_uuid
         })
         
         print(f"Successfully inserted: {item_name}")
