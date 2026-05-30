@@ -1,6 +1,6 @@
 Hey there!
 
-This is the Flask application to populate the list form a json file.
+This is the Flask application to populate the list from a json file.
 
 update python3, pip and venv -- sudo apt install python3-pip python3-venv
 
