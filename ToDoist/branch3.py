@@ -1,3 +1,5 @@
+"""Flask app that inserts todo items into MongoDB."""
+
 import os
 
 from flask import Flask, render_template, request, redirect
@@ -19,13 +21,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-# render html
+    """Render the home page."""
     return render_template("index.html")
 
 
 @app.route("/submit", methods=["POST"])
 def submit():
-# Insert data to Mongo
+    """get data and insert to Mongo"""
     try:
         item_name = request.form.get("itemName")
         item_description = request.form.get("itemDescription")
