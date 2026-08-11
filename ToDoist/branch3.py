@@ -1,44 +1,51 @@
 import os
+
 from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+from pymongo.errors import PyMongoError
+
 
 load_dotenv()
 
-MONGO_URI = os.getenv('MONGO_URI')
-client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
+MONGO_URI = os.getenv("MONGO_URI")
+client = MongoClient(MONGO_URI, server_api=ServerApi("1"))
 db = client.todo_db
-collection = db['todo_items']
+collection = db["todo_items"]
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def home():
-    return render_template('index.html')
+# render html
+    return render_template("index.html")
 
-@app.route('/submit', methods=['POST'])
+
+@app.route("/submit", methods=["POST"])
 def submit():
+# Insert data to Mongo
     try:
-        item_name = request.form.get('itemName')
-        item_description = request.form.get('itemDescription')
-        item_id = request.form.get('itemId')
+        item_name = request.form.get("itemName")
+        item_description = request.form.get("itemDescription")
+        item_id = request.form.get("itemId")
 
-        collection.insert_one({
-            "itemName": item_name,
-            "itemDescription": item_description,
-            "itemId": item_id,
+        collection.insert_one(
+            {
+                "itemName": item_name,
+                "itemDescription": item_description,
+                "itemId": item_id,
+            }
+        )
 
-        })
-        
         print(f"Successfully inserted: {item_name}")
-        return redirect('/') 
-        
-    except Exception as e:
+        return redirect("/")
+
+    except PyMongoError as e:
         print(f"Error: {e}")
-        return render_template('index.html', error="Failed to insert item")
+        return render_template("index.html", error="Failed to insert item")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
-
