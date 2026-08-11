@@ -2,11 +2,11 @@
 
 import os
 
-from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 from pymongo import MongoClient
-from pymongo.server_api import ServerApi
 from pymongo.errors import PyMongoError
+from pymongo.server_api import ServerApi
+from flask import Flask, render_template, request, redirect
 
 
 load_dotenv()
